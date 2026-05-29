@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>El-sayed GBADAMASSI | Portfolio IT & Réseaux</title>
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="#home" class="logo">
+            EG... <span>El-sayed</span>
+        </a>
+
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#home" data-i18n="nav-home">Accueil</a>
+            <a href="#about" data-i18n="nav-about">À Propos</a>
+            <a href="#services" data-i18n="nav-services">Services</a>
+            <a href="#projects" data-i18n="nav-projects">Projets</a>
+            <a href="#contact" data-i18n="nav-contact">Contact</a>
+        </nav>
+
+        <button class="gradient-btn" onclick="window.location.href='#contact'" data-i18n="btn-contact-header">Me Contacter</button>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1 data-i18n="home-title">Moi, c'est <span>El-sayed</span></h1>
+            <h3 data-i18n="home-subtitle">Tech <span>Réseaux & Maintenance</span></h3>
+            <p data-i18n="home-description">Spécialisé dans l'infrastructure réseau, le déploiement de solutions sans-fil optimisées et le dépannage de systèmes informatiques. J'allie l'efficacité matérielle à l'automatisation système pour concevoir des environnements informatiques stables et performants.</p>
+
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/el-sayed-gbadamassi-44b7b0409/" aria-label="LinkedIn" target="_blank"><i class="bx bxl-linkedin-square"></i></a>
+                <a href="https://github.com/Ls4yed" aria-label="GitHub" target="_blank"><i class="bx bxl-github"></i></a>
+                <a href="https://wa.me/22870146962" aria-label="WhatsApp" target="_blank"><i class="bx bxl-whatsapp"></i></a>
+                <a href="https://x.com/Ls4yed" aria-label="Twitter" target="_blank"><i class="bx bxl-twitter"></i></a>
+            </div>
+
+            <div class="btn-group">
+                <a href="#contact" class="btn" data-i18n="btn-hire">Engager</a>
+                <a href="#projects" class="btn" data-i18n="btn-projects">Voir mes projets</a>
+            </div>
+        </div>
+
+        <div class="home-img">
+            <img src="image.jpg" alt="El-sayed GBADAMASSI - Portrait">
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="image.jpg" alt="Informatique et Réseaux">
+        </div>
+
+        <div class="about-content">
+            <h2 data-i18n="about-title">À propos de <span>Moi</span></h2>
+            <p data-i18n="about-p1">Actuellement étudiant en <strong>Informatique, Réseaux et Fibre Optique à la TRT Académie à Lomé</strong>, je suis un passionné d'infrastructures informatiques. Mon quotidien tourne autour de la configuration d'équipements réseaux, du déploiement de routeurs, de l'initiation aux technologies de fibre optique, et de la remise à neuf de parcs informatiques (hardware et software).</p>
+            <p style="margin-top: 15px;" data-i18n="about-p2">Rigoureux et orienté solutions, j'aime également optimiser l'usage du système Android grâce à des scripts d'automatisation poussés avec MacroDroid.</p>
+            <a href="#contact" class="btn" data-i18n="btn-more">En savoir plus</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="heading" data-i18n="services-title">Mes <span>Services</span></h2>
+
+        <div class="services-container">
+            <div class="service-box">
+                <div class="service-info">
+                    <i class="bx bx-wifi"></i>
+                    <h4 data-i18n="service1-title">Infrastructure Réseau & Wi-Fi</h4>
+                    <p data-i18n="service1-desc">Configuration avancée de routeurs TP-Link, optimisation des bandes de fréquences et sécurisation des protocoles d'accès pour maximiser la portée et la gestion du trafic de vos réseaux locaux.</p>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <div class="service-info">
+                    <i class="bx bx-wrench"></i>
+                    <h4 data-i18n="service2-title">Maintenance & Réparation PC</h4>
+                    <p data-i18n="service2-desc">Diagnostic matériel complet, remplacement de composants critiques (écrans, batteries, RAM, mise à niveau vers des disques SSD) et installation propre/optimisation des systèmes Windows.</p>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <div class="service-info">
+                    <i class="bx bx-chip"></i>
+                    <h4 data-i18n="service3-title">Automatisation & Systèmes</h4>
+                    <p data-i18n="service3-desc">Création de macros complexes sur Android via MacroDroid pour automatiser les tâches répétitives, gérer intelligemment la connectivité et améliorer la productivité sur mobile.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <h2 class="heading" data-i18n="projects-heading">Mes <span>Projets</span></h2>
+
+        <div class="projects-box">
+            <div class="project-card">
+                <img src="project1.png" alt="Déploiement Réseau Professionnel">
+                <h3 data-i18n="proj1-title">Optimisation Réseau Local & Routage</h3>
+                <p data-i18n="proj1-desc">Déploiement et configuration complète d'un routeur TP-Link d'entreprise pour implémenter un contrôle d'accès strict, une isolation de réseau (VLAN) et une priorisation de trafic (QoS) pour une PME.</p>
+                <a href="#" class="btn" data-i18n="btn-details">Détails du projet</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project2.png" alt="Rénovation Hardware PC">
+                <h3 data-i18n="proj2-title">Upgrade et Rénovation de Parc Informatique</h3>
+                <p data-i18n="proj2-desc">Remise à neuf d'ordinateurs portables professionnels : remplacement de dalles d'écran défectueuses, intégration de SSD haute vitesse et augmentation de RAM, suivis d'une installation propre de Windows 11 Pro.</p>
+                <a href="#" class="btn" data-i18n="btn-details">Détails du projet</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project3.png" alt="Automatisation Android MacroDroid">
+                <h3 data-i18n="proj3-title">Système d'Automatisation Mobile</h3>
+                <p data-i18n="proj3-desc">Développement de scripts d'automatisation sous MacroDroid permettant la synchronisation automatique des fichiers en local, la gestion intelligente de la batterie et le basculement dynamique Wi-Fi/Données.</p>
+                <a href="#" class="btn" data-i18n="btn-details">Détails du projet</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project4.png" alt="Architecture Fibre Optique">
+                <h3 data-i18n="proj4-title">Maquette d'Abonnement FTTH</h3>
+                <p data-i18n="proj4-desc">Étude de cas et simulation de raccordement d'un bâtiment en fibre optique, incluant la préparation des câbles, l'évaluation des pertes de signal et la configuration de l'ONT client terminal.</p>
+                <a href="#" class="btn" data-i18n="btn-details">Détails du projet</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project5.png" alt="Sécurisation Wi-Fi">
+                <h3 data-i18n="proj5-title">Audit et Sécurisation de Point d'Accès</h3>
+                <p data-i18n="proj5-desc">Analyse spectrale des canaux Wi-Fi encombrés, reconfiguration complète des canaux d'un routeur domestique et mise en place d'un protocole de sécurité robuste pour éliminer les interférences et intrusions.</p>
+                <a href="#" class="btn" data-i18n="btn-details">Détails du projet</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project6.png" alt="Sauvegarde automatisée">
+                <h3 data-i18n="proj6-title">Script SysPrep & Déploiement Windows</h3>
+                <p data-i18n="proj6-desc">Création d'une image système Windows optimisée et pré-configurée avec les logiciels de diagnostic de base, permettant un déploiement ultra-rapide lors des interventions de maintenance.</p>
+                <a href="#" class="btn" data-i18n="btn-details">Détails du projet</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="heading" data-i18n="contact-title">Discutons de votre <span>Projet</span></h2>
+
+        <form action="https://formspree.io/f/xeeddqwk" method="POST">
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" name="name" id="form-name" placeholder="Nom Complet" required>
+                    <input type="email" name="email" id="form-email" placeholder="Adresse Email" required>
+                </div>
+
+                <div class="input-box">
+                    <input type="number" name="phone" id="form-phone" placeholder="Numéro de Téléphone">
+                    <input type="text" name="subject" id="form-subject" placeholder="Sujet de votre message">
+                </div>
+            </div>
+
+            <div class="input-group-2">
+                <textarea name="message" id="form-message" placeholder="Décrivez votre besoin (Panne matérielle, configuration réseau, déploiement...)" cols="30" rows="10" required></textarea>
+                <input type="submit" id="form-submit" value="Envoyer la demande" class="btn">
+            </div>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/el-sayed-gbadamassi-44b7b0409/" aria-label="LinkedIn" target="_blank"><i class="bx bxl-linkedin-square"></i></a>
+            <a href="https://github.com/Ls4yed" aria-label="GitHub" target="_blank"><i class="bx bxl-github"></i></a>
+            <a href="https://wa.me/22870146962" aria-label="WhatsApp" target="_blank"><i class="bx bxl-whatsapp"></i></a>
+            <a href="https://x.com/Ls4yed" aria-label="Twitter" target="_blank"><i class="bx bxl-twitter"></i></a>
+        </div>
+
+        <ul class="list">
+            <li><a href="#">TRT Académie</a></li>
+            <li><a href="#services" data-i18n="nav-services">Services</a></li>
+            <li><a href="#about" data-i18n="nav-about">À Propos</a></li>
+            <li><a href="#projects" data-i18n="nav-projects">Projets</a></li>
+            <li><a href="#contact" data-i18n="nav-contact">Contact</a></li>
+        </ul>
+
+        <p class="copyright">
+            © El-sayed GBADAMASSI | <span data-i18n="copyright-text">Tous droits réservés</span>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
