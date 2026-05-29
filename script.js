@@ -124,42 +124,57 @@ const translations = {
     }
 };
 
-// Application des traductions
+/* ==================== SYSTÈME DE TRADUCTION CORE ==================== */
+
 function applyLanguage(lang) {
+    if (!translations[lang]) return;
+
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
+        if (translations[lang][key]) {
             element.innerHTML = translations[lang][key];
         }
     });
 
-    if(translations[lang]) {
-        if(document.getElementById('form-name')) document.getElementById('form-name').placeholder = translations[lang]['ph-name'];
-        if(document.getElementById('form-email')) document.getElementById('form-email').placeholder = translations[lang]['ph-email'];
-        if(document.getElementById('form-phone')) document.getElementById('form-phone').placeholder = translations[lang]['ph-phone'];
-        if(document.getElementById('form-subject')) document.getElementById('form-subject').placeholder = translations[lang]['ph-subject'];
-        if(document.getElementById('form-message')) document.getElementById('form-message').placeholder = translations[lang]['ph-message'];
-        if(document.getElementById('form-submit')) document.getElementById('form-submit').value = translations[lang]['val-submit'];
+    const inputs = {
+        'form-name': 'ph-name',
+        'form-email': 'ph-email',
+        'form-phone': 'ph-phone',
+        'form-subject': 'ph-subject',
+        'form-message': 'ph-message'
+    };
+
+    for (let id in inputs) {
+        let el = document.getElementById(id);
+        if (el) el.placeholder = translations[lang][inputs[id]];
     }
+
+    let submitBtn = document.getElementById('form-submit');
+    if (submitBtn) submitBtn.value = translations[lang]['val-submit'];
 }
 
-// Fonction pour changer manuellement la langue au clic
-function changeLanguage(lang) {
+// Rattachement explicite à window pour régler le problème de clic HTML
+window.changeLanguage = function(lang) {
     if (translations[lang]) {
         applyLanguage(lang);
         localStorage.setItem('preferred-lang', lang);
     }
-}
+};
 
-// Détection système au chargement + mémoire locale
-document.addEventListener("DOMContentLoaded", () => {
+function initLanguage() {
     let savedLang = localStorage.getItem('preferred-lang');
     let userLang = savedLang || navigator.language || navigator.userLanguage;
     userLang = userLang.substr(0, 2).toLowerCase();
 
-    if (userLang !== 'fr' && userLang !== 'en' && userLang !== 'de') {
+    if (!translations[userLang]) {
         userLang = 'en';
     }
 
     applyLanguage(userLang);
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener("DOMContentLoaded", initLanguage);
+} else {
+    initLanguage();
+}
