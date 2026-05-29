@@ -7,13 +7,50 @@ menuIcon.onclick = () => {
     navbar.classList.toggle('active');
 };
 
-/* ==================== REMOVE MENU ON LINK CLICK ==================== */
-document.querySelectorAll('.navbar a').forEach(link => {
-    link.onclick = () => {
-        menuIcon.classList.remove('bx-x');
-        navbar.classList.remove('active');
-    };
+/* ==================== ANIMATIONS DE SCROLL FLUIDE ET INTERACTIF ==================== */
+// Forcer et lisser le défilement lors du clic sur le menu (Idéal pour Mobile)
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            // Ferme le menu mobile si ouvert
+            menuIcon.classList.remove('bx-x');
+            navbar.classList.remove('active');
+
+            // Défilement précis calculé de manière fluide
+            const headerOffset = 80;
+            const elementPosition = targetElement.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+    });
 });
+
+/* ==================== EFFETS D'APPARITION AU DÉFILEMENT (REVEAL) ==================== */
+const revealSections = () => {
+    const reveals = document.querySelectorAll('.reveal');
+    const windowHeight = window.innerHeight;
+    
+    reveals.forEach(reveal => {
+        const revealTop = reveal.getBoundingClientRect().top;
+        const revealPoint = 100; // Déclenchement rapide pour les écrans mobiles
+
+        if (revealTop < windowHeight - revealPoint) {
+            reveal.classList.add('active');
+        }
+    });
+};
+
+window.addEventListener('scroll', revealSections);
+window.addEventListener('load', revealSections);
 
 /* ==================== DICTIONNAIRE MULTILINGUE ==================== */
 const translations = {
@@ -124,11 +161,11 @@ const translations = {
     }
 };
 
-/* ==================== SYSTÈME DE TRADUCTION CORE ==================== */
-
+/* ==================== SYSTEME DE TRADUCTION CORE ==================== */
 function applyLanguage(lang) {
     if (!translations[lang]) return;
 
+    // Transition d'opacité uniquement lors du basculement manuel pour le confort visuel
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang][key]) {
@@ -151,13 +188,25 @@ function applyLanguage(lang) {
 
     let submitBtn = document.getElementById('form-submit');
     if (submitBtn) submitBtn.value = translations[lang]['val-submit'];
+
+    // Mettre en valeur visuellement le drapeau sélectionné
+    document.querySelectorAll('.lang-selector span').forEach(span => span.classList.remove('active-lang'));
+    const flags = { 'fr': 0, 'en': 1, 'de': 2 };
+    const activeFlag = document.querySelectorAll('.lang-selector span')[flags[lang]];
+    if (activeFlag) activeFlag.classList.add('active-lang');
 }
 
-// Rattachement explicite à window pour régler le problème de clic HTML
 window.changeLanguage = function(lang) {
     if (translations[lang]) {
-        applyLanguage(lang);
-        localStorage.setItem('preferred-lang', lang);
+        // Effet de transition d'affichage lors du changement de langue
+        document.body.style.transition = "opacity 0.15s ease";
+        document.body.style.opacity = "0.4";
+        
+        setTimeout(() => {
+            applyLanguage(lang);
+            localStorage.setItem('preferred-lang', lang);
+            document.body.style.opacity = "1";
+        }, 150);
     }
 };
 
