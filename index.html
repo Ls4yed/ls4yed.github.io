@@ -11,18 +11,18 @@
 <body>
 
     <header class="header">
-        <a href="#home" class="logo">
+        <a href="#home" class="logo animate-nav">
             G. <span>El-sayed</span>
         </a>
 
         <i class="bx bx-menu" id="menu-icon"></i>
 
         <nav class="navbar">
-            <a href="#home" data-i18n="nav-home">Accueil</a>
-            <a href="#about" data-i18n="nav-about">À Propos</a>
-            <a href="#services" data-i18n="nav-services">Profil Technique</a>
-            <a href="#projects" data-i18n="nav-projects">Objectifs</a>
-            <a href="#contact" data-i18n="nav-contact">Contact</a>
+            <a href="#home" class="nav-link" data-i18n="nav-home">Accueil</a>
+            <a href="#about" class="nav-link" data-i18n="nav-about">À Propos</a>
+            <a href="#services" class="nav-link" data-i18n="nav-services">Profil Technique</a>
+            <a href="#projects" class="nav-link" data-i18n="nav-projects">Objectifs</a>
+            <a href="#contact" class="nav-link" data-i18n="nav-contact">Contact</a>
         </nav>
 
         <div class="lang-selector">
@@ -34,7 +34,7 @@
         <button class="gradient-btn" onclick="window.location.href='#contact'" data-i18n="btn-contact-header">Me Contacter</button>
     </header>
 
-    <section class="home" id="home">
+    <section class="home reveal" id="home">
         <div class="home-content">
             <h1 data-i18n="home-title">Moi, c'est <span>GBADAMASSI El-sayed</span></h1>
             <h3 data-i18n="home-subtitle">Étudiant <span>Informatique & Réseaux</span></h3>
@@ -58,7 +58,7 @@
         </div>
     </section>
 
-    <section class="about" id="about">
+    <section class="about reveal" id="about">
         <div class="about-img">
             <img src="image.jpg" alt="Informatique et Réseaux">
         </div>
@@ -71,7 +71,7 @@
         </div>
     </section>
 
-    <section class="services" id="services">
+    <section class="services reveal" id="services">
         <h2 class="heading" data-i18n="services-title">Profil <span>Technique</span></h2>
         <p style="text-align: center; max-width: 800px; margin: -20px auto 50px auto; font-size: 1.6rem;" data-i18n="services-subtitle">Je me concentre sur l’apprentissage et la pratique des bases de l’informatique, notamment :</p>
 
@@ -102,18 +102,18 @@
         </div>
     </section>
 
-    <section class="projects" id="projects">
+    <section class="projects reveal" id="projects">
         <h2 class="heading" data-i18n="projects-heading">Objectif <span>Professionnel</span></h2>
         
-        <div style="max-width: 900px; margin: 0 auto; text-align: center; padding: 30px; background: rgba(255,255,255,0.05); border-radius: 2rem; border: 2px solid var(--main-color);">
-            <i class="bx bx-target-lock" style="font-size: 6rem; color: var(--main-color); margin-bottom: 20px;"></i>
-            <p style="font-size: 1.8rem; line-height: 1.8; font-style: italic;" data-i18n="proj-objective">
+        <div class="objective-card">
+            <i class="bx bx-target-lock"></i>
+            <p data-i18n="proj-objective">
                 "Mon objectif est de développer des compétences solides en informatique et réseaux afin d’évoluer vers des métiers techniques liés aux infrastructures réseau et aux télécommunications, avec une progression vers des environnements professionnels structurés."
             </p>
         </div>
     </section>
 
-    <section class="contact" id="contact">
+    <section class="contact reveal" id="contact">
         <h2 class="heading" data-i18n="contact-title">Discutons de votre <span>Projet</span></h2>
 
         <form action="https://formspree.io/f/xeeddqwk" method="POST">
