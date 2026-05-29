@@ -74,6 +74,26 @@ body {
     transition: transform .3s ease;
 }
 
+/* ==================== SÉLECTEUR DE LANGUE ==================== */
+.lang-selector {
+    display: flex;
+    gap: 1.5rem;
+    margin-left: auto;
+    margin-right: 2rem;
+}
+
+.lang-selector span {
+    font-size: 2.2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+    opacity: 0.6;
+}
+
+.lang-selector span:hover {
+    transform: scale(1.2);
+    opacity: 1;
+}
+
 /* ==================== SECTIONS COMMUNES ==================== */
 section {
     min-height: 100vh;
@@ -119,6 +139,7 @@ section {
     font-weight: 600;
     cursor: pointer;
     transition: all .3s ease;
+    flex-shrink: 0;
 }
 
 .gradient-btn:hover {
@@ -412,6 +433,11 @@ section {
         margin: 2.5rem 0;
         margin-left: 0;
         text-align: center;
+    }
+    
+    .lang-selector {
+        margin-right: 3rem;
+        margin-left: auto;
     }
     
     .header .gradient-btn { display: none; }
