@@ -143,13 +143,22 @@ function applyLanguage(lang) {
     }
 }
 
-// Détection système au chargement
+// Fonction pour changer manuellement la langue au clic
+function changeLanguage(lang) {
+    if (translations[lang]) {
+        applyLanguage(lang);
+        localStorage.setItem('preferred-lang', lang);
+    }
+}
+
+// Détection système au chargement + mémoire locale
 document.addEventListener("DOMContentLoaded", () => {
-    let userLang = navigator.language || navigator.userLanguage;
+    let savedLang = localStorage.getItem('preferred-lang');
+    let userLang = savedLang || navigator.language || navigator.userLanguage;
     userLang = userLang.substr(0, 2).toLowerCase();
 
     if (userLang !== 'fr' && userLang !== 'en' && userLang !== 'de') {
-        userLang = 'en'; // Langue fallback internationale
+        userLang = 'en';
     }
 
     applyLanguage(userLang);
