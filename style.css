@@ -660,8 +660,53 @@ span {
 }
 
 /* ==========================================================================
-   15. SECTION STATISTIQUES
+   16. OPTIMISATION PERFORMANCES MOBILE
    ========================================================================== */
+
+/* Activer l'accélération GPU sur les éléments animés */
+.btn,
+.gradient-btn,
+.service-box,
+.project-card,
+.stat-card,
+.social-icons a,
+.home-img img,
+.about-img img,
+.logo {
+  will-change: transform;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Réduire les animations sur mobile */
+@media (max-width: 768px) {
+  .btn:hover,
+  .gradient-btn:hover,
+  .project-card:hover,
+  .stat-card:hover,
+  .service-box:hover {
+    transform: none;
+    box-shadow: 0 0 15px var(--main-color);
+  }
+
+  .social-icons a:hover {
+    transform: scale(1.1);
+  }
+
+  * {
+    transition-duration: 0.15s !important;
+  }
+}
+
+/* Respecter les préférences système "reduced motion" */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
 .stats-section {
   background-color: var(--bg-color);
   min-height: unset;
