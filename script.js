@@ -224,56 +224,57 @@ document.querySelectorAll('a, button, input[type="submit"], .btn, .gradient-btn'
 });
 
 // ==========================================================================
-// STATISTIQUES GOATCOUNTER
-// Remplace TONCODE par ton code GoatCounter (ex: ls4yed)
+// STATISTIQUES GOATCOUNTER (API publique)
 // ==========================================================================
 const GOAT_CODE = 'ls4yed';
+const GOAT_BASE = `https://${GOAT_CODE}.goatcounter.com`;
 
 async function fetchStats() {
     try {
-        const base = `https://${GOAT_CODE}.goatcounter.com/api/v0`;
-        const headers = {}; // API publique pour les stats de base
-
-        // Total visites
-        const resTotal = await fetch(`${base}/stats/total`);
-        if (resTotal.ok) {
-            const dataTotal = await resTotal.json();
-            document.getElementById('visitors-total').textContent =
-                (dataTotal.total || 0).toLocaleString();
+        // Visiteurs en ce moment (compteur public)
+        const resNow = await fetch(`${GOAT_BASE}/counter/TOTAL.json`);
+        if (resNow.ok) {
+            const data = await resNow.json();
+            document.getElementById('visitors-now').textContent = data.count ?? '--';
         }
 
-        // Visites aujourd'hui
-        const today = new Date().toISOString().split('T')[0];
-        const resDay = await fetch(`${base}/stats/hits?start=${today}&end=${today}`);
+        // Stats du jour, mois et total via l'API publique
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        const todayStr = `${yyyy}-${mm}-${dd}`;
+        const firstDayStr = `${yyyy}-${mm}-01`;
+        const yearStart = `${yyyy}-01-01`;
+
+        // Aujourd'hui
+        const resDay = await fetch(`${GOAT_BASE}/counter/${todayStr}.json`);
         if (resDay.ok) {
-            const dataDay = await resDay.json();
-            const todayCount = dataDay.hits?.reduce((s, h) => s + h.count, 0) || 0;
-            document.getElementById('visitors-today').textContent =
-                todayCount.toLocaleString();
+            const data = await resDay.json();
+            document.getElementById('visitors-today').textContent = data.count ?? '0';
         }
 
-        // Visites ce mois
-        const firstDay = new Date();
-        firstDay.setDate(1);
-        const firstDayStr = firstDay.toISOString().split('T')[0];
-        const resMonth = await fetch(`${base}/stats/hits?start=${firstDayStr}&end=${today}`);
+        // Ce mois
+        const resMonth = await fetch(`${GOAT_BASE}/counter/${yyyy}-${mm}.json`);
         if (resMonth.ok) {
-            const dataMonth = await resMonth.json();
-            const monthCount = dataMonth.hits?.reduce((s, h) => s + h.count, 0) || 0;
-            document.getElementById('visitors-month').textContent =
-                monthCount.toLocaleString();
+            const data = await resMonth.json();
+            document.getElementById('visitors-month').textContent = data.count ?? '0';
         }
 
-        // Visiteurs en temps réel (via le compteur public GoatCounter)
-        const resRT = await fetch(`https://${GOAT_CODE}.goatcounter.com/counter/TOTAL.json`);
-        if (resRT.ok) {
-            const dataRT = await resRT.json();
-            document.getElementById('visitors-now').textContent =
-                (dataRT.count || '--');
+        // Total
+        const resTotal = await fetch(`${GOAT_BASE}/counter/TOTAL.json`);
+        if (resTotal.ok) {
+            const data = await resTotal.json();
+            document.getElementById('visitors-total').textContent = data.count ?? '0';
         }
 
     } catch (e) {
         console.log('Stats non disponibles:', e);
+        ['visitors-now', 'visitors-today', 'visitors-month', 'visitors-total']
+            .forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.textContent === '--') el.textContent = '0';
+            });
     }
 }
 
@@ -282,15 +283,49 @@ fetchStats();
 setInterval(fetchStats, 60000);
 
 // ==========================================================================
-// INITIALISATION DU SÉLECTEUR DE LANGUE
+// INITIALISATION DU SÉLECTEUR DE LANGUE CUSTOM
 // ==========================================================================
 const langSwitcher = document.getElementById('lang-switcher');
+const langSelected = langSwitcher.querySelector('.lang-selected');
+const langItems = langSwitcher.querySelectorAll('.lang-dropdown li');
+
+const flagMap = {
+    fr: { img: 'https://flagcdn.com/w20/fr.png', label: 'FR' },
+    en: { img: 'https://flagcdn.com/w20/gb.png', label: 'EN' },
+    de: { img: 'https://flagcdn.com/w20/de.png', label: 'DE' }
+};
+
+function updateSelectedFlag(lang) {
+    const f = flagMap[lang];
+    langSelected.innerHTML = `
+        <img src="${f.img}" alt="${f.label}" class="flag-img">
+        <span>${f.label}</span>
+        <i class="bx bx-chevron-down"></i>
+    `;
+}
+
+// Toggle dropdown
+langSelected.addEventListener('click', (e) => {
+    e.stopPropagation();
+    langSwitcher.classList.toggle('open');
+});
+
+// Fermer si clic dehors
+document.addEventListener('click', () => {
+    langSwitcher.classList.remove('open');
+});
+
+// Choisir une langue
+langItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const lang = item.getAttribute('data-lang');
+        applyLanguage(lang);
+        updateSelectedFlag(lang);
+        langSwitcher.classList.remove('open');
+    });
+});
 
 // Charger la langue sauvegardée ou FR par défaut
 const savedLang = localStorage.getItem('lang') || 'fr';
-langSwitcher.value = savedLang;
+updateSelectedFlag(savedLang);
 applyLanguage(savedLang);
-
-langSwitcher.addEventListener('change', (e) => {
-    applyLanguage(e.target.value);
-});
