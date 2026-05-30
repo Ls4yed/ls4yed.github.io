@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBADAMASSI El-sayed | Portfolio</title>
+    <link rel="icon" type="image/x-icon" href="https://raw.githubusercontent.com/Ls4yed/ls4yed.github.io/main/favicon.ico">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <a href="#home" class="logo">
+            G.<span>El-sayed</span>
+        </a>
+
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <nav class="navbar">
+            <a href="#home" data-i18n="nav_home">Accueil</a>
+            <a href="#about" data-i18n="nav_about">À propos</a>
+            <a href="#services" data-i18n="nav_services">Services</a>
+            <a href="#projects" data-i18n="nav_projects">Projets</a>
+        </nav>
+
+        <div class="header-right">
+            <select id="lang-switcher">
+                <option value="fr">🇫🇷 FR</option>
+                <option value="en">🇬🇧 EN</option>
+                <option value="de">🇩🇪 DE</option>
+            </select>
+            <a href="#contact" class="gradient-btn" data-i18n="nav_contact">Contact</a>
+        </div>
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-content">
+            <h1 data-i18n="home_title">Bienvenue sur mon <span>Portfolio</span></h1>
+            <h3 data-i18n="home_subtitle">Je suis en <span>Formation IT & Réseaux</span></h3>
+            <p data-i18n="home_desc">Étudiant à TRT Académie (Lomé, Togo), je me forme en informatique, réseaux et fibre optique. Ce portfolio évolue au rythme de mon apprentissage et de mes projets techniques.</p>
+
+            <div class="social-icons">
+                <a href="https://github.com/Ls4yed" target="_blank" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+                <a href="https://www.linkedin.com/in/el-sayed-gbadamassi-44b7b0409/" target="_blank" aria-label="LinkedIn"><i class="bx bxl-linkedin-square"></i></a>
+                <a href="https://wa.me/22870146962" target="_blank" aria-label="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+                <a href="https://x.com/Ls4yed" target="_blank" aria-label="Twitter/X"><i class="bx bxl-twitter"></i></a>
+            </div>
+
+            <div class="btn-group">
+                <a href="#contact" class="btn" data-i18n="btn_hire">M'embaucher</a>
+                <a href="#contact" class="btn" data-i18n="nav_contact">Contact</a>
+            </div>
+        </div>
+
+        <div class="home-img">
+            <img src="image.jpg" alt="GBADAMASSI El-sayed - Photo de profil">
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="image.jpg" alt="À propos de El-sayed">
+        </div>
+
+        <div class="about-content">
+            <h2 data-i18n="about_title">À propos de <span>Moi</span></h2>
+            <p data-i18n="about_desc">Je suis <strong>GBADAMASSI El-sayed</strong>, originaire de Lomé (Togo). Actuellement en formation modulaire en informatique, réseaux et fibre optique au sein de <strong>TRT Académie</strong> (Technologie Réseaux Télécom) depuis avril 2026. Mon objectif est de développer des compétences solides pour évoluer vers des métiers liés aux infrastructures réseau et aux télécommunications.</p>
+            <a href="#" class="btn" data-i18n="btn_readmore">En savoir plus</a>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2 class="heading" data-i18n="nav_services">Services</h2>
+
+        <div class="services-container">
+            <div class="service-box">
+                <div class="service-info">
+                    <i class="bx bx-desktop"></i>
+                    <h4 data-i18n="srv1_title">Maintenance Informatique</h4>
+                    <p data-i18n="srv1_desc">Diagnostic de pannes, réparation de matériel, installation et configuration de systèmes d'exploitation Windows et Linux.</p>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <div class="service-info">
+                    <i class="bx bx-network-chart"></i>
+                    <h4 data-i18n="srv2_title">Réseaux Informatiques</h4>
+                    <p data-i18n="srv2_desc">Notions et pratique des fondamentaux des réseaux informatiques : câblage, configuration de base et diagnostic réseau.</p>
+                </div>
+            </div>
+
+            <div class="service-box">
+                <div class="service-info">
+                    <i class="bx bx-cable-car"></i>
+                    <h4 data-i18n="srv3_title">Fibre Optique</h4>
+                    <p data-i18n="srv3_desc">Initiation progressive aux infrastructures fibre optique : types de câbles, connecteurs, notions de raccordement et mesures de puissance optique.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <h2 class="heading" data-i18n="projects_title">Mes <span>Projets</span></h2>
+
+        <div class="projects-box">
+            <div class="project-card">
+                <img src="project1.png" alt="Diagnostic et réparation PC">
+                <h3 data-i18n="proj1_title">Diagnostic & Réparation PC</h3>
+                <p data-i18n="proj1_desc">Identification et résolution de pannes matérielles sur des ordinateurs de bureau et portables : remplacement de composants, nettoyage, tests de stabilité.</p>
+                <a href="#" class="btn" data-i18n="btn_project">Voir le projet</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project2.png" alt="Installation Windows & Linux">
+                <h3 data-i18n="proj2_title">Installation OS Windows & Linux</h3>
+                <p data-i18n="proj2_desc">Installation et configuration complète de systèmes d'exploitation Windows 10/11 et distributions Linux, partitionnement de disque et paramétrage post-installation.</p>
+                <a href="#" class="btn" data-i18n="btn_project">Voir le projet</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project3.png" alt="Câblage réseau RJ45">
+                <h3 data-i18n="proj3_title">Câblage Réseau RJ45</h3>
+                <p data-i18n="proj3_desc">Réalisation de câbles réseau droits et croisés RJ45, raccordement de prises murales et test de continuité avec un testeur de câble réseau.</p>
+                <a href="#" class="btn" data-i18n="btn_project">Voir le projet</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project4.png" alt="Configuration réseau local">
+                <h3 data-i18n="proj4_title">Configuration Réseau Local (LAN)</h3>
+                <p data-i18n="proj4_desc">Mise en place d'un réseau local : configuration des adresses IP, connexion de plusieurs postes, partage de ressources et test de connectivité avec les commandes réseau de base.</p>
+                <a href="#" class="btn" data-i18n="btn_project">Voir le projet</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project5.png" alt="Initiation fibre optique">
+                <h3 data-i18n="proj5_title">Initiation Fibre Optique</h3>
+                <p data-i18n="proj5_desc">Découverte des infrastructures fibre optique : types de fibres, connecteurs, notions de raccordement et mesures de puissance optique.</p>
+                <a href="#" class="btn" data-i18n="btn_project">Voir le projet</a>
+            </div>
+
+            <div class="project-card">
+                <img src="project6.png" alt="Portfolio Web">
+                <h3 data-i18n="proj6_title">Portfolio Web Personnel</h3>
+                <p data-i18n="proj6_desc">Conception et développement de ce portfolio en HTML, CSS et JavaScript pour présenter mon parcours, mes compétences techniques et mes réalisations.</p>
+                <a href="#" class="btn" data-i18n="btn_project">Voir le projet</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <h2 class="heading" data-i18n="contact_title">Écrivez-<span>moi</span></h2>
+
+        <form action="https://formspree.io/f/xeeddqwk" method="POST">
+            <div class="input-group">
+                <div class="input-box">
+                    <input type="text" name="name" data-i18n-placeholder="ph_name" placeholder="Nom complet" required>
+                    <input type="email" name="email" data-i18n-placeholder="ph_email" placeholder="Adresse email" required>
+                </div>
+
+                <div class="input-box">
+                    <input type="number" name="phone" data-i18n-placeholder="ph_phone" placeholder="Numéro de téléphone">
+                    <input type="text" name="subject" data-i18n-placeholder="ph_subject" placeholder="Sujet">
+                </div>
+            </div>
+
+            <div class="input-group-2">
+                <textarea name="message" data-i18n-placeholder="ph_message" placeholder="Votre message..." cols="30" rows="10" required></textarea>
+                <input type="submit" data-i18n-value="btn_send" value="Envoyer le message" class="btn">
+            </div>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="social-icons">
+            <a href="https://github.com/Ls4yed" target="_blank" aria-label="GitHub"><i class="bx bxl-github"></i></a>
+            <a href="https://www.linkedin.com/in/el-sayed-gbadamassi-44b7b0409/" target="_blank" aria-label="LinkedIn"><i class="bx bxl-linkedin-square"></i></a>
+            <a href="https://wa.me/22870146962" target="_blank" aria-label="WhatsApp"><i class="bx bxl-whatsapp"></i></a>
+            <a href="https://x.com/Ls4yed" target="_blank" aria-label="Twitter/X"><i class="bx bxl-twitter"></i></a>
+        </div>
+
+        <ul class="list">
+            <li><a href="#" data-i18n="footer_faq">FAQ</a></li>
+            <li><a href="#services" data-i18n="nav_services">Services</a></li>
+            <li><a href="#about" data-i18n="nav_about">À propos</a></li>
+            <li><a href="#projects" data-i18n="nav_projects">Projets</a></li>
+            <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+
+        <p class="copyright" data-i18n="footer_copy">© G. El-sayed | Tous droits réservés</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
