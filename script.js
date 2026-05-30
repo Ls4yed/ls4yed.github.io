@@ -1,27 +1,41 @@
+/* ==================== CONFIGURATION AUDIO (.WAV) ==================== */
+// Chargement du fichier .wav en mémoire tampon
+const clickSound = new Audio('click.wav');
+clickSound.volume = 0.4; // Volume réglé de manière optimale à 40%
+
+// Fonction pour jouer le son de manière synchrone et rapide sans décalage
+function playClickSound() {
+    clickSound.currentTime = 0; 
+    clickSound.play().catch(error => {
+        console.log("Lecture audio en attente d'une première action de l'utilisateur.");
+    });
+}
+
 /* ==================== TOGGLE ICON NAVBAR ==================== */
 let menuIcon = document.querySelector('#menu-icon');
 let navbar = document.querySelector('.navbar');
 
 menuIcon.onclick = () => {
+    playClickSound(); // Son lors de l'activation du menu mobile
     menuIcon.classList.toggle('bx-x');
     navbar.classList.toggle('active');
 };
 
 /* ==================== ANIMATIONS DE SCROLL FLUIDE ET INTERACTIF ==================== */
-// Forcer et lisser le défilement lors du clic sur le menu (Idéal pour Mobile)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
+        
+        playClickSound(); // Son lors de la navigation interne
+
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
         
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
-            // Ferme le menu mobile si ouvert
             menuIcon.classList.remove('bx-x');
             navbar.classList.remove('active');
 
-            // Défilement précis calculé de manière fluide
             const headerOffset = 80;
             const elementPosition = targetElement.getBoundingClientRect().top;
             const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
@@ -41,7 +55,7 @@ const revealSections = () => {
     
     reveals.forEach(reveal => {
         const revealTop = reveal.getBoundingClientRect().top;
-        const revealPoint = 100; // Déclenchement rapide pour les écrans mobiles
+        const revealPoint = 100;
 
         if (revealTop < windowHeight - revealPoint) {
             reveal.classList.add('active');
@@ -51,6 +65,17 @@ const revealSections = () => {
 
 window.addEventListener('scroll', revealSections);
 window.addEventListener('load', revealSections);
+
+/* ==================== ASSIGNATION DYNAMIQUE DES SONS AUX INTERACTIONS ==================== */
+function setupButtonSounds() {
+    // Sélection de tous les points d'interactions de l'interface
+    const interactiveElements = document.querySelectorAll('.btn, .gradient-btn, .social-icons a, .lang-selector span, input[type="submit"]');
+    
+    interactiveElements.forEach(element => {
+        element.removeEventListener('click', playClickSound); // Évite de dupliquer les écouteurs
+        element.addEventListener('click', playClickSound);
+    });
+}
 
 /* ==================== DICTIONNAIRE MULTILINGUE ==================== */
 const translations = {
@@ -165,7 +190,6 @@ const translations = {
 function applyLanguage(lang) {
     if (!translations[lang]) return;
 
-    // Transition d'opacité uniquement lors du basculement manuel pour le confort visuel
     document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (translations[lang][key]) {
@@ -189,16 +213,16 @@ function applyLanguage(lang) {
     let submitBtn = document.getElementById('form-submit');
     if (submitBtn) submitBtn.value = translations[lang]['val-submit'];
 
-    // Mettre en valeur visuellement le drapeau sélectionné
     document.querySelectorAll('.lang-selector span').forEach(span => span.classList.remove('active-lang'));
     const flags = { 'fr': 0, 'en': 1, 'de': 2 };
     const activeFlag = document.querySelectorAll('.lang-selector span')[flags[lang]];
     if (activeFlag) activeFlag.classList.add('active-lang');
+    
+    setupButtonSounds();
 }
 
 window.changeLanguage = function(lang) {
     if (translations[lang]) {
-        // Effet de transition d'affichage lors du changement de langue
         document.body.style.transition = "opacity 0.15s ease";
         document.body.style.opacity = "0.4";
         
@@ -220,6 +244,9 @@ function initLanguage() {
     }
 
     applyLanguage(userLang);
+    document.body.style.opacity = "1";
+    
+    setupButtonSounds();
 }
 
 if (document.readyState === 'loading') {
