@@ -346,14 +346,13 @@ span {
   background-color: var(--bg-color);
   border: 2px solid var(--main-color);
   border-radius: 3rem;
-  gap: 2rem;
-  padding: 5rem 2rem;
+  gap: 1.5rem;
+  padding: 3rem 2rem;
   overflow: hidden;
   cursor: pointer;
   box-shadow: 0 0 5px var(--main-color);
   transition: 0.3s ease;
-  height: 100%;
-  min-height: 520px;
+  height: 580px;
 }
 
 .project-card:hover {
@@ -374,6 +373,10 @@ span {
 .project-card p {
   font-size: 1.6rem;
   flex-grow: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .projects-box {
