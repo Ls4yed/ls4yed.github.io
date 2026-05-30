@@ -63,7 +63,13 @@ const translations = {
         ph_message: "Votre message...",
         btn_send: "Envoyer le message",
         footer_faq: "FAQ",
-        footer_copy: "© G. El-sayed | Tous droits réservés"
+        footer_copy: "© G. El-sayed | Tous droits réservés",
+        stats_title: "Statistiques du ",
+        stats_title_span: "Site",
+        stats_now: "Visiteurs en ce moment",
+        stats_today: "Visites aujourd'hui",
+        stats_month: "Visites ce mois-ci",
+        stats_total: "Visites au total"
     },
     en: {
         nav_home: "Home",
@@ -107,7 +113,13 @@ const translations = {
         ph_message: "Your message...",
         btn_send: "Send Message",
         footer_faq: "FAQ",
-        footer_copy: "© G. El-sayed | All Rights Reserved"
+        footer_copy: "© G. El-sayed | All Rights Reserved",
+        stats_title: "Site ",
+        stats_title_span: "Statistics",
+        stats_now: "Visitors right now",
+        stats_today: "Visits today",
+        stats_month: "Visits this month",
+        stats_total: "Total visits"
     },
     de: {
         nav_home: "Startseite",
@@ -151,7 +163,13 @@ const translations = {
         ph_message: "Ihre Nachricht...",
         btn_send: "Nachricht senden",
         footer_faq: "FAQ",
-        footer_copy: "© G. El-sayed | Alle Rechte vorbehalten"
+        footer_copy: "© G. El-sayed | Alle Rechte vorbehalten",
+        stats_title: "Website-",
+        stats_title_span: "Statistiken",
+        stats_now: "Besucher gerade jetzt",
+        stats_today: "Besuche heute",
+        stats_month: "Besuche diesen Monat",
+        stats_total: "Besuche insgesamt"
     }
 };
 
@@ -204,6 +222,64 @@ document.querySelectorAll('a, button, input[type="submit"], .btn, .gradient-btn'
         clickSound.play().catch(() => {});
     });
 });
+
+// ==========================================================================
+// STATISTIQUES GOATCOUNTER
+// Remplace TONCODE par ton code GoatCounter (ex: ls4yed)
+// ==========================================================================
+const GOAT_CODE = 'ls4yed';
+
+async function fetchStats() {
+    try {
+        const base = `https://${GOAT_CODE}.goatcounter.com/api/v0`;
+        const headers = {}; // API publique pour les stats de base
+
+        // Total visites
+        const resTotal = await fetch(`${base}/stats/total`);
+        if (resTotal.ok) {
+            const dataTotal = await resTotal.json();
+            document.getElementById('visitors-total').textContent =
+                (dataTotal.total || 0).toLocaleString();
+        }
+
+        // Visites aujourd'hui
+        const today = new Date().toISOString().split('T')[0];
+        const resDay = await fetch(`${base}/stats/hits?start=${today}&end=${today}`);
+        if (resDay.ok) {
+            const dataDay = await resDay.json();
+            const todayCount = dataDay.hits?.reduce((s, h) => s + h.count, 0) || 0;
+            document.getElementById('visitors-today').textContent =
+                todayCount.toLocaleString();
+        }
+
+        // Visites ce mois
+        const firstDay = new Date();
+        firstDay.setDate(1);
+        const firstDayStr = firstDay.toISOString().split('T')[0];
+        const resMonth = await fetch(`${base}/stats/hits?start=${firstDayStr}&end=${today}`);
+        if (resMonth.ok) {
+            const dataMonth = await resMonth.json();
+            const monthCount = dataMonth.hits?.reduce((s, h) => s + h.count, 0) || 0;
+            document.getElementById('visitors-month').textContent =
+                monthCount.toLocaleString();
+        }
+
+        // Visiteurs en temps réel (via le compteur public GoatCounter)
+        const resRT = await fetch(`https://${GOAT_CODE}.goatcounter.com/counter/TOTAL.json`);
+        if (resRT.ok) {
+            const dataRT = await resRT.json();
+            document.getElementById('visitors-now').textContent =
+                (dataRT.count || '--');
+        }
+
+    } catch (e) {
+        console.log('Stats non disponibles:', e);
+    }
+}
+
+// Lancer au chargement et actualiser toutes les 60 secondes
+fetchStats();
+setInterval(fetchStats, 60000);
 
 // ==========================================================================
 // INITIALISATION DU SÉLECTEUR DE LANGUE
